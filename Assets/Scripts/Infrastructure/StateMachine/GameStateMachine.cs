@@ -1,7 +1,7 @@
 using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.Services.Factory;
 using Assets.Scripts.Infrastructure.Services.SaveLoadService;
-using Assets.Scripts.Logic;
+using Assets.Scripts.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

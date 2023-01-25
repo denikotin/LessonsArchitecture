@@ -1,8 +1,5 @@
 ﻿using Assets.Scripts.Data;
-using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.Services.SaveLoadService;
-using System;
-using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure.StateMachine
 {
@@ -20,7 +17,6 @@ namespace Assets.Scripts.Infrastructure.StateMachine
             _progressService = progressServices;
             _saveLoadService = saveLoadService;
         }
-
 
         public void Enter()
         {
@@ -40,7 +36,13 @@ namespace Assets.Scripts.Infrastructure.StateMachine
 
         private PlayerProgress NewProgress()
         {
-           return new PlayerProgress(initialLevel: "Main"); 
+            var progress =  new PlayerProgress(initialLevel: "Main");
+            
+            progress.HeroState.maxHealth = 50f;
+            progress.HeroState.ResetHealth();
+            progress.Stats.damage = 1f;
+            progress.Stats.damageRadius = 0.5f;
+            return progress;
         }
     }
 }

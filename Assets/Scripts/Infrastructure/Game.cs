@@ -1,6 +1,6 @@
 using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.StateMachine;
-using Assets.Scripts.Logic;
+using Assets.Scripts.UI;
 
 namespace Assets.Scripts.Infrastructure
 {

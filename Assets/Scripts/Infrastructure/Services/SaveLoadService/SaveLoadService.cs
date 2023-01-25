@@ -11,7 +11,7 @@ namespace Assets.Scripts.Infrastructure.Services.SaveLoadService
         private readonly IPersistentProgressService _progressService;
         private readonly IGameFactory _gameFactory;
 
-        public SaveLoadService(IPersistentProgressService progressService,IGameFactory gameFactory)
+        public SaveLoadService(IPersistentProgressService progressService, IGameFactory gameFactory)
         {
             _progressService = progressService;
             _gameFactory = gameFactory;
@@ -19,12 +19,12 @@ namespace Assets.Scripts.Infrastructure.Services.SaveLoadService
 
         public PlayerProgress LoadProgress()
         {
-           return PlayerPrefs.GetString(PROGRESS)?.ToDeserialized<PlayerProgress>();
+            return PlayerPrefs.GetString(PROGRESS)?.ToDeserialized<PlayerProgress>();
         }
 
         public void SaveProgress()
         {
-            foreach(ISavedProgress progressWriters in _gameFactory.ProgressWriters)
+            foreach (ISavedProgress progressWriters in _gameFactory.ProgressWriters)
             {
                 progressWriters.UpdateProgress(_progressService.Progress);
             }

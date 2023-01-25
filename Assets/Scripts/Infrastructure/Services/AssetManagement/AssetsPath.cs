@@ -2,7 +2,7 @@
 {
     public static class AssetsPath
     {
-        public const string PLAYER_PATH = "Player/Player";
+        public const string PLAYER_PATH = "Hero/hero";
         public const string HUD_PATH = "UI/Hud";
     }
 }

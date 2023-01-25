@@ -1,5 +1,5 @@
 using Assets.Scripts.Infrastructure.StateMachine;
-using Assets.Scripts.Logic;
+using Assets.Scripts.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure

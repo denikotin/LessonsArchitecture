@@ -24,7 +24,7 @@ namespace Assets.Scripts.Infrastructure.StateMachine
 
         public void Enter()
         {
-            _sceneLoader.Load(INITIAL_SCENE_NAME, onLoaded: EnterLoadLevelState);
+            _sceneLoader.Load(INITIAL_SCENE_NAME, onLoaded: EnterLoadProgressState);
         }
 
         public void Exit()
@@ -53,7 +53,7 @@ namespace Assets.Scripts.Infrastructure.StateMachine
             }
         }
 
-        private void EnterLoadLevelState() => _gameStateMachine.Enter<LoadProgressState>();
+        private void EnterLoadProgressState() => _gameStateMachine.Enter<LoadProgressState>();
 
     }
 }
