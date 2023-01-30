@@ -1,4 +1,5 @@
 using Assets.Scripts.Data;
+using Assets.Scripts.Data.PlayerProgressFolder;
 using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.Services.InputServices;
 using Assets.Scripts.Infrastructure.Services.PersistentProgress;
@@ -7,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Player
 {
-    public class PlayerMove : MonoBehaviour, ISavedProgress
+    public class PlayerMove : MonoBehaviour, ISavedProgressWriter
     {
         public CharacterController characterController;
         public float movementSpeed;
@@ -15,7 +16,7 @@ namespace Assets.Scripts.Player
 
         private void Awake()
         {
-            _inputeService = AllServices.Container.Single<IInputService>();
+            _inputeService = ServiceLocator.Container.Single<IInputService>();
         }
 
         private void Update()

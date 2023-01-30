@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Data;
+﻿using Assets.Scripts.Data.PlayerProgressFolder;
 using Assets.Scripts.Infrastructure.Services;
 
 namespace Assets.Scripts.Infrastructure.Services.SaveLoadService

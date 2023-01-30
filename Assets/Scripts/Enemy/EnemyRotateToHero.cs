@@ -8,29 +8,9 @@ namespace Assets.Scripts.Enemy
     {
         public float speed;
         private Transform _heroTransform;
-        private IGameFactory _gameFactory;
         private Vector3 _positionToLook;
 
-        private void Start()
-        {
-            _gameFactory = AllServices.Container.Single<IGameFactory>();
-            if (IsHeroExist())
-            {
-                InitializeHeroTransform();
-            }
-            else
-            {
-                _gameFactory.HeroCreatedEvent += InitializeHeroTransform;
-            }
-        }
-
-        private bool IsHeroExist() =>
-           _gameFactory.heroGameObject != null;
-        
-
-        private void InitializeHeroTransform() =>
-            _heroTransform = _gameFactory.heroGameObject.transform;
-        
+        public void Construct(Transform heroTransform) => _heroTransform = heroTransform;
 
         private void Update()
         {

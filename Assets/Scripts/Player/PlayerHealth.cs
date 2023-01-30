@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Data;
+﻿using Assets.Scripts.Data.PlayerProgressFolder;
 using Assets.Scripts.Infrastructure.Services.PersistentProgress;
 using Assets.Scripts.Logic;
 using System;
@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.Player
 {
     [RequireComponent(typeof(HeroAnimator))]
-    public class PlayerHealth : MonoBehaviour, ISavedProgress, IHealth
+    public class PlayerHealth : MonoBehaviour, ISavedProgressWriter, IHealth
     {
         public HeroAnimator animator;
         public event Action OnHealthChanged;

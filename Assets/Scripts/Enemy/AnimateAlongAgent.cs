@@ -1,32 +1,33 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(EnemyAnimator))]
-public class AnimateAlongAgent : MonoBehaviour
+namespace Assets.Scripts.Enemy
 {
-    private const float  minimalVelocity = 0.1f;
-    public NavMeshAgent agent;
-    public EnemyAnimator animator;
-
-    void Update()
+    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(EnemyAnimator))]
+    public class AnimateAlongAgent : MonoBehaviour
     {
-        if (ShouldMove())
+        private const float minimalVelocity = 0.1f;
+        public NavMeshAgent agent;
+        public EnemyAnimator animator;
+
+        void Update()
         {
-            animator.Move(agent.velocity.magnitude);
-        }    
-        else
-        {
-            animator.StopMove();
+            if (ShouldMove())
+            {
+                animator.Move(agent.velocity.magnitude);
+            }
+            else
+            {
+                animator.StopMove();
+            }
+
         }
-            
-    }
 
-    private bool ShouldMove()
-    {
-       return agent.velocity.magnitude > minimalVelocity && agent.remainingDistance > agent.radius;
+        private bool ShouldMove()
+        {
+            return agent.velocity.magnitude > minimalVelocity && agent.remainingDistance > agent.radius;
+        }
     }
 }
+

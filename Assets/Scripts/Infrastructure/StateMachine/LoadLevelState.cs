@@ -1,8 +1,11 @@
-﻿using Assets.Scripts.Infrastructure.Services.Factory;
+﻿using Assets.Scripts.Enemy;
+using Assets.Scripts.Enemy.LootScripts;
+using Assets.Scripts.Infrastructure.Services.Factory;
 using Assets.Scripts.Infrastructure.Services.PersistentProgress;
 using Assets.Scripts.Logic.CameraLogic;
 using Assets.Scripts.Player;
 using Assets.Scripts.UI;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure.StateMachine
@@ -10,6 +13,7 @@ namespace Assets.Scripts.Infrastructure.StateMachine
     public class LoadLevelState : IPayloadedState<string>
     {
         private const string INITIAL_POINT = "InitialPoint";
+        private const string ENEMY_SPAWNER_TAG = "EnemySpawner";
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
@@ -46,16 +50,26 @@ namespace Assets.Scripts.Infrastructure.StateMachine
 
         private void InitializeGameWorld()
         {
+            InitSpawners();
             GameObject player = _gameFactory.CreatePlayer(GameObject.FindGameObjectWithTag(INITIAL_POINT));
             InitHud(player);
             CameraFollow(player);
+        }
+
+        private void InitSpawners()
+        {
+            foreach (GameObject spawnerGameObject in GameObject.FindGameObjectsWithTag(ENEMY_SPAWNER_TAG))
+            {
+                EnemySpawner spawner = spawnerGameObject.GetComponent<EnemySpawner>();
+                _gameFactory.Register(spawner);
+            }
         }
 
         private void InitHud(GameObject player)
         {
             GameObject hud = _gameFactory.CreateHud();
             hud.GetComponentInChildren<ActorUI>()
-                 .Construct(player.GetComponent<PlayerHealth>());
+                    .Construct(player.GetComponent<PlayerHealth>());
         }
 
         private void InformProgressReader()
@@ -67,9 +81,7 @@ namespace Assets.Scripts.Infrastructure.StateMachine
         }
         private void CameraFollow(GameObject player)
         {
-            Camera.main
-               .GetComponent<CameraFollow>()
-               .SetFollowing(player);
+            Camera.main.GetComponent<CameraFollow>().SetFollowing(player);
         }
     }
 }

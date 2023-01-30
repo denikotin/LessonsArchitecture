@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Infrastructure.Services.PersistentProgress;
+﻿using Assets.Scripts.Enemy.LootScripts;
+using Assets.Scripts.Infrastructure.Services.PersistentProgress;
+using Assets.Scripts.StaticData.EnemyStaticData;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +10,13 @@ namespace Assets.Scripts.Infrastructure.Services.Factory
     public interface IGameFactory : IService
     {
         List<ISavedProgressReader> ProgressReaders { get; }
-        List<ISavedProgress> ProgressWriters { get; }
+        List<ISavedProgressWriter> ProgressWriters { get; }
 
-        GameObject heroGameObject { get; }
-
-        event Action HeroCreatedEvent;
-
-        GameObject CreateHud();
-        GameObject CreatePlayer(GameObject initialPoint);
         public void CleanUp();
-
+        public void Register(ISavedProgressReader progressReader);
+        GameObject CreateHud();
+        LootPiece CreateLoot();
+        GameObject CreatePlayer(GameObject initialPoint);
+        GameObject CreateMonster(MonsterTypeID monsterTypeID, Transform parent);
     }
 }

@@ -1,4 +1,3 @@
-using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.Services.Factory;
 using Assets.Scripts.Logic;
 using System.Linq;
@@ -12,10 +11,9 @@ namespace Assets.Scripts.Enemy
         public EnemyAnimator enemyAnimator;
         public float attackCooldown;
         public float cleavage = 0.5f;
-        private float effectiveDistance = 0.5f;
-        public float _damage = 10f;
+        public float damage = 10f;
+        public float effectiveDistance = 0.5f;
 
-        private IGameFactory _gameFactory;
         private Transform _heroTransform;
         private float _attackCooldown;
         private bool _isAttacking;
@@ -23,15 +21,9 @@ namespace Assets.Scripts.Enemy
         private Collider[] _hits = new Collider[1];
         private bool _attackIsActive;
 
-        void Awake()
-        {
-            _gameFactory = AllServices.Container.Single<GameFactory>();
-            if( _gameFactory != null )
-            {
-                _gameFactory.HeroCreatedEvent += OnHeroCreated;
-            }
-            _layerMask = 1 << LayerMask.NameToLayer("Player");
-        }
+        public void Construct(Transform heroTransform) => _heroTransform = heroTransform;
+
+        void Awake() => _layerMask = 1 << LayerMask.NameToLayer("Player");
 
         void Update()
         {
@@ -47,7 +39,7 @@ namespace Assets.Scripts.Enemy
             if(Hit(out Collider hit))
             {
                 PhysicsDebug.DrawDebug(StartPoint(), cleavage, 1);
-                hit.transform.GetComponent<IHealth>().TakeDamage(_damage);
+                hit.transform.GetComponent<IHealth>().TakeDamage(damage);
             }
         }
         private void OnAttackEnded()
@@ -83,10 +75,8 @@ namespace Assets.Scripts.Enemy
 
         private Vector3 StartPoint() =>
             new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + (transform.forward * effectiveDistance);
-        private void OnHeroCreated() => _heroTransform = _gameFactory.heroGameObject.transform;
         private bool CanAttack() => _attackIsActive &&!_isAttacking && CooldownIsUp();
         private bool CooldownIsUp() => _attackCooldown <= 0;
-
 
     }
 }

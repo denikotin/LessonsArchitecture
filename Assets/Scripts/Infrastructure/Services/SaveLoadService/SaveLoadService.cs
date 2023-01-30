@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Data;
+using Assets.Scripts.Data.PlayerProgressFolder;
 using Assets.Scripts.Infrastructure.Services.Factory;
 using Assets.Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace Assets.Scripts.Infrastructure.Services.SaveLoadService
 
         public void SaveProgress()
         {
-            foreach (ISavedProgress progressWriters in _gameFactory.ProgressWriters)
+            foreach (ISavedProgressWriter progressWriters in _gameFactory.ProgressWriters)
             {
                 progressWriters.UpdateProgress(_progressService.Progress);
             }

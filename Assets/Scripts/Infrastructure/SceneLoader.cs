@@ -16,17 +16,17 @@ namespace Assets.Scripts.Infrastructure
 
         public void Load(string sceneName, Action onLoaded = null) =>
             _coroutineRunner.StartCoroutine(LoadSceneAsync(sceneName, onLoaded));
-        
+
         private IEnumerator LoadSceneAsync(string sceneName, Action onLoaded = null)
         {
-            if(SceneManager.GetActiveScene().name == sceneName)
+            if (SceneManager.GetActiveScene().name == sceneName)
             {
                 onLoaded?.Invoke();
                 yield break;
             }
             AsyncOperation loadNextScene = SceneManager.LoadSceneAsync(sceneName);
 
-            while(!loadNextScene.isDone)
+            while (!loadNextScene.isDone)
             {
                 yield return null;
             }

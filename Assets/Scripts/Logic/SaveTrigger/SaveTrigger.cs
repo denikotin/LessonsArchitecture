@@ -12,7 +12,7 @@ namespace Assets.Scripts.Logic.SaveTrigger
 
         private void Awake()
         {
-            _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
+            _saveLoadService = ServiceLocator.Container.Single<ISaveLoadService>();
         }
 
         private void OnTriggerEnter(Collider other)

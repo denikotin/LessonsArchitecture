@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Data;
+﻿using Assets.Scripts.Data.PlayerProgressFolder;
 
 namespace Assets.Scripts.Infrastructure.Services.PersistentProgress
 {

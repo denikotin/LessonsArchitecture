@@ -4,7 +4,6 @@ using Assets.Scripts.Infrastructure.Services.SaveLoadService;
 using Assets.Scripts.UI;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure.StateMachine
 {
@@ -14,18 +13,24 @@ namespace Assets.Scripts.Infrastructure.StateMachine
         private IExitableState _activeState;
 
 
-        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, AllServices services)
+        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, ServiceLocator services)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain,services.Single<IGameFactory>(), services.Single<IPersistentProgressService>()),
-                [typeof(LoadProgressState)] = new LoadProgressState(this, sceneLoader, services.Single<IPersistentProgressService>(), services.Single<ISaveLoadService>()),
+                
+                [typeof(LoadProgressState)] = 
+                    new LoadProgressState(this, sceneLoader, services.Single<IPersistentProgressService>(), services.Single<ISaveLoadService>()),
+                
+                [typeof(LoadLevelState)] = 
+                    new LoadLevelState(this, sceneLoader, loadingCurtain, services.Single<IGameFactory>(), services.Single<IPersistentProgressService>()),
+                
+                
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };
         }
 
-        public void Enter<TState>() where TState: class, IState
+        public void Enter<TState>() where TState : class, IState
         {
             TState state = ChangeState<TState>();
             state.Enter();
@@ -37,7 +42,7 @@ namespace Assets.Scripts.Infrastructure.StateMachine
             state.Enter(payload);
         }
 
-        private TState ChangeState<TState>() where TState: class, IExitableState
+        private TState ChangeState<TState>() where TState : class, IExitableState
         {
             _activeState?.Exit();
             TState state = GetState<TState>();
@@ -45,10 +50,8 @@ namespace Assets.Scripts.Infrastructure.StateMachine
             return state;
         }
 
-        private TState GetState<TState>() where TState: class, IExitableState
-        {
-            return _states[typeof(TState)] as TState;
-        }
+        private TState GetState<TState>() where TState : class, IExitableState => 
+            _states[typeof(TState)] as TState;
     }
 }
 

@@ -1,4 +1,4 @@
-using Assets.Scripts.Data;
+using Assets.Scripts.Data.PlayerProgressFolder;
 using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.Services.InputServices;
 using Assets.Scripts.Infrastructure.Services.PersistentProgress;
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Player
 
         private void Awake()
         {
-            _inputService = AllServices.Container.Single<IInputService>();
+            _inputService = ServiceLocator.Container.Single<IInputService>();
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
 
         }
