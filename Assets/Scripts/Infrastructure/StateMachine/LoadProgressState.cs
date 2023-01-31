@@ -6,14 +6,12 @@ namespace Assets.Scripts.Infrastructure.StateMachine
     public class LoadProgressState : IState
     {
         private readonly GameStateMachine _gameStateMachine;
-        private readonly SceneLoader _sceneLoader;
         private readonly IPersistentProgressService _progressService;
         private readonly ISaveLoadService _saveLoadService;
 
-        public LoadProgressState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, IPersistentProgressService progressServices, ISaveLoadService saveLoadService)
+        public LoadProgressState(GameStateMachine gameStateMachine, IPersistentProgressService progressServices, ISaveLoadService saveLoadService)
         {
             _gameStateMachine = gameStateMachine;
-            _sceneLoader = sceneLoader;
             _progressService = progressServices;
             _saveLoadService = saveLoadService;
         }
@@ -29,10 +27,7 @@ namespace Assets.Scripts.Infrastructure.StateMachine
 
         }
 
-        private void LoadProgressOrInitNew()
-        {
-            _progressService.Progress = _saveLoadService.LoadProgress() ?? NewProgress();
-        }
+        private void LoadProgressOrInitNew() => _progressService.Progress = _saveLoadService.LoadProgress() ?? NewProgress();
 
         private PlayerProgress NewProgress()
         {

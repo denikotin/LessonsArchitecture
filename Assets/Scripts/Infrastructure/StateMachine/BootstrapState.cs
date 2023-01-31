@@ -1,12 +1,11 @@
-﻿using Assets.Scripts.Infrastructure.Services;
-using Assets.Scripts.Infrastructure.Services.AssetManagement;
+﻿using UnityEngine;
+using Assets.Scripts.StaticData;
+using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.Services.Factory;
 using Assets.Scripts.Infrastructure.Services.InputServices;
 using Assets.Scripts.Infrastructure.Services.RandomService;
 using Assets.Scripts.Infrastructure.Services.SaveLoadService;
-using Assets.Scripts.StaticData;
-using System;
-using UnityEngine;
+using Assets.Scripts.Infrastructure.Services.AssetManagement;
 
 namespace Assets.Scripts.Infrastructure.StateMachine
 {
@@ -41,15 +40,16 @@ namespace Assets.Scripts.Infrastructure.StateMachine
             IPersistentProgressService persistentProgress = RegisterPersistentProgressService();
 
             _services.RegisterSingle(inputService);
-            _services.RegisterSingle<IGameFactory>(new GameFactory(assetProvider, staticDataService, randomService, persistentProgress));
-            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(persistentProgress, ServiceLocator.Container.Single<IGameFactory>()));
-
+            _services.RegisterSingle<IGameFactory>
+                (new GameFactory(assetProvider, staticDataService, randomService, persistentProgress));
+            _services.RegisterSingle<ISaveLoadService>
+                (new SaveLoadService(persistentProgress, ServiceLocator.Container.Single<IGameFactory>()));
         }
 
         private IStaticDataService RegisterStaticData()
         {
             IStaticDataService staticData = new StaticDataService();
-            staticData.LoadMonsters();
+            staticData.Load();
             _services.RegisterSingle(staticData);
             return staticData;
         }

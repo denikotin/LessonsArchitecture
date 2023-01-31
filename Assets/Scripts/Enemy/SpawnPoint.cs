@@ -1,38 +1,35 @@
 ﻿using Assets.Scripts.Data.PlayerProgressFolder;
-using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.Services.Factory;
 using Assets.Scripts.Infrastructure.Services.PersistentProgress;
-using Assets.Scripts.Logic;
 using Assets.Scripts.StaticData.EnemyStaticData;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemy
 {
-    public class EnemySpawner : MonoBehaviour, ISavedProgressWriter
+    public class SpawnPoint : MonoBehaviour, ISavedProgressWriter
     {
+        public string Id { get; set; }
         public MonsterTypeID monsterTypeID;
-        private string _id;
-        private IGameFactory _gameFactory;
         public bool _slain;
+        private IGameFactory _gameFactory;
         private EnemyDeath _enemyDeath;
 
-        private void Awake()
+        public void Construct(IGameFactory gameFactory)
         {
-            _id = GetComponent<UniqueID>().ID;
-            _gameFactory = ServiceLocator.Container.Single<IGameFactory>();
+            _gameFactory = gameFactory;
         }
 
         public void UpdateProgress(PlayerProgress data)
         {
             if (_slain)
             {
-                data.KillData.ClearedSpawners.Add(_id);
+                data.KillData.ClearedSpawners.Add(Id);
             }
         }
 
         public void LoadProgress(PlayerProgress data)
         {
-            if (data.KillData.ClearedSpawners.Contains(_id))
+            if (data.KillData.ClearedSpawners.Contains(Id))
                 _slain = true;
             else
             {

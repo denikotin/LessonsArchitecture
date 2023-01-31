@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7027028078979828937
+--- !u!1 &7844883447832562905
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,55 +8,54 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7027028078979828951}
-  - component: {fileID: 7027028078979828936}
-  - component: {fileID: 7357787916139612410}
+  - component: {fileID: 3759552369039133401}
+  - component: {fileID: 8626532084783878930}
+  - component: {fileID: 2132020606098717851}
   m_Layer: 0
-  m_Name: Spawner
-  m_TagString: EnemySpawner
+  m_Name: SpawnMarker
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7027028078979828951
+--- !u!4 &3759552369039133401
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7027028078979828937}
+  m_GameObject: {fileID: 7844883447832562905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.72, y: 0, z: -5.01}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7027028078979828936
+--- !u!114 &8626532084783878930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7027028078979828937}
+  m_GameObject: {fileID: 7844883447832562905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75fd7df92a9b22646a3179e3adca1c87, type: 3}
+  m_Script: {fileID: 11500000, guid: fd6d5a46fc1301a48ba052884f534529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterTypeID: 0
-  _slain: 0
---- !u!114 &7357787916139612410
+--- !u!114 &2132020606098717851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7027028078979828937}
+  m_GameObject: {fileID: 7844883447832562905}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f4d87e5feca994b9524a2573e8c668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: _b0bef9a8-2b8f-4a2f-9b81-73d7788c7c25
+  ID: _9ad55146-7849-4198-96b6-fe9b3693e32d
