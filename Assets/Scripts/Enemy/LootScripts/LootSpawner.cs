@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Data;
-using Assets.Scripts.Data.LootData;
+using Assets.Scripts.Data.LootDataFolder;
 using Assets.Scripts.Data.PlayerProgressFolder;
 using Assets.Scripts.Infrastructure.Services.Factory;
 using Assets.Scripts.Infrastructure.Services.PersistentProgress;

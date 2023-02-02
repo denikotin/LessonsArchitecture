@@ -1,6 +1,7 @@
+using Assets.Scripts.Infrastructure.SceneLoaderFolder;
 using Assets.Scripts.Infrastructure.Services;
 using Assets.Scripts.Infrastructure.StateMachine;
-using Assets.Scripts.UI;
+using Assets.Scripts.UI.Elements;
 
 namespace Assets.Scripts.Infrastructure
 {

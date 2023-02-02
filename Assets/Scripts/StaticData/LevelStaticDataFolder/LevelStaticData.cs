@@ -8,6 +8,7 @@ namespace Assets.Scripts.StaticData.LevelStaticDataFolder
     {
         public string LevelKey;
         public List<EnemySpawnerData> EnemySpawners;
+        public Vector3 InitialPlayerPosition;
 
     }
 }

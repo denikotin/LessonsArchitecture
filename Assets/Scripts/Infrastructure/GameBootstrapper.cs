@@ -1,5 +1,5 @@
-using Assets.Scripts.Infrastructure.StateMachine;
-using Assets.Scripts.UI;
+using Assets.Scripts.Infrastructure.StateMachine.States;
+using Assets.Scripts.UI.Elements;
 using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure

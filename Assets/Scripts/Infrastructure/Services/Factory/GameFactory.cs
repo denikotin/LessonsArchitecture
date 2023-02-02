@@ -1,11 +1,14 @@
 ﻿using Assets.Scripts.Enemy;
+using Assets.Scripts.Enemy.EnemySpawnScripts;
 using Assets.Scripts.Enemy.LootScripts;
 using Assets.Scripts.Infrastructure.Services.AssetManagement;
 using Assets.Scripts.Infrastructure.Services.PersistentProgress;
 using Assets.Scripts.Infrastructure.Services.RandomService;
+using Assets.Scripts.Infrastructure.Services.StaticDataService;
 using Assets.Scripts.Logic;
 using Assets.Scripts.StaticData.EnemyStaticData;
-using Assets.Scripts.UI;
+using Assets.Scripts.UI.Elements;
+using Assets.Scripts.UI.Services.Windows;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,17 +22,19 @@ namespace Assets.Scripts.Infrastructure.Services.Factory
         private IStaticDataService _staticData;
         private IRandomService _randomService;
         private IPersistentProgressService _progressService;
+        private IWindowService _windowService;
 
         public List<ISavedProgressReader> ProgressReaders { get; private set; } = new List<ISavedProgressReader>();
         public List<ISavedProgressWriter> ProgressWriters { get; private set; } = new List<ISavedProgressWriter>();
         public GameObject heroGameObject { get; set; }
 
-        public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService randomService, IPersistentProgressService persistentProgress)
+        public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService randomService, IPersistentProgressService persistentProgress, IWindowService windowService)
         {
             _assets = assets;
             _staticData = staticData;
             _randomService = randomService;
             _progressService = persistentProgress;
+            _windowService = windowService;
         }
 
         public void CleanUp()
@@ -38,9 +43,9 @@ namespace Assets.Scripts.Infrastructure.Services.Factory
             ProgressWriters.Clear();
         }
 
-        public GameObject CreatePlayer(GameObject initialPoint)
+        public GameObject CreatePlayer(Vector3 initialPoint)
         {
-            heroGameObject = InstantiateRegistered(AssetsPath.PLAYER_PATH, initialPoint.transform.position);
+            heroGameObject = InstantiateRegistered(AssetsPath.PLAYER_PATH, initialPoint);
             return heroGameObject;
         }
 
@@ -91,6 +96,12 @@ namespace Assets.Scripts.Infrastructure.Services.Factory
         {
             GameObject hud = InstantiateRegistered(AssetsPath.HUD_PATH);
             hud.GetComponentInChildren<LootCounter>().Constructor(_progressService.Progress.WorldData);
+
+            foreach(OpenWindowButton button in hud.GetComponentsInChildren<OpenWindowButton>())
+            {
+                button.Construct(_windowService);
+            }
+
             return hud;
         }
 
@@ -124,7 +135,5 @@ namespace Assets.Scripts.Infrastructure.Services.Factory
             }
             ProgressReaders.Add(progressReader);
         }
-
-
     }
 }

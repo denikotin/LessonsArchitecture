@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3759552369039133401}
-  - component: {fileID: 8626532084783878930}
   - component: {fileID: 2132020606098717851}
+  - component: {fileID: 6664155191028017765}
   m_Layer: 0
   m_Name: SpawnMarker
   m_TagString: Untagged
@@ -33,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8626532084783878930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7844883447832562905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6d5a46fc1301a48ba052884f534529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterTypeID: 0
 --- !u!114 &2132020606098717851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,3 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: _9ad55146-7849-4198-96b6-fe9b3693e32d
+--- !u!114 &6664155191028017765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844883447832562905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316100ac4752e6e4d9dc55b656215cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterTypeID: 0

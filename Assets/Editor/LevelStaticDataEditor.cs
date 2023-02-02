@@ -1,16 +1,18 @@
-﻿using Assets.Scripts.Enemy;
-using Assets.Scripts.StaticData.LevelStaticDataFolder;
+﻿using Assets.Scripts.StaticData.LevelStaticDataFolder;
 using UnityEditor;
 using UnityEngine;
 using System.Linq;
 using Assets.Scripts.Logic;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.Enemy.EnemySpawnScripts;
 
 namespace Assets.Editor
 {
     [CustomEditor(typeof(LevelStaticData))]
     public class LevelStaticDataEditor : UnityEditor.Editor
     {
+        private const string INITIAL_POINT = "InitialPoint";
+
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
@@ -24,6 +26,8 @@ namespace Assets.Editor
                     .ToList();
 
                 levelData.LevelKey = SceneManager.GetActiveScene().name;
+
+                levelData.InitialPlayerPosition = GameObject.FindGameObjectWithTag(INITIAL_POINT).transform.position;
             }
             EditorUtility.SetDirty(target);
         }

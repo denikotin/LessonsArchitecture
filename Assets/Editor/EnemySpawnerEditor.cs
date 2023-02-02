@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Enemy;
+﻿using Assets.Scripts.Enemy.EnemySpawnScripts;
 using UnityEditor;
 using UnityEngine;
 

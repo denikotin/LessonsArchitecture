@@ -15,7 +15,7 @@ namespace Assets.Scripts.Infrastructure.Services.Factory
         void CreateSpawner(Vector3 position, string spawnerId, MonsterTypeID monsterTypeID);
         GameObject CreateHud();
         LootPiece CreateLoot();
-        GameObject CreatePlayer(GameObject initialPoint);
+        GameObject CreatePlayer(Vector3 initialPoint);
         GameObject CreateMonster(MonsterTypeID monsterTypeID, Transform parent);
     }
 }

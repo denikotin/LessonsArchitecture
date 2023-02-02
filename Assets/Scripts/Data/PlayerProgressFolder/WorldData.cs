@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Data.LootDataFolder;
+using System;
 
 namespace Assets.Scripts.Data.PlayerProgressFolder
 {
