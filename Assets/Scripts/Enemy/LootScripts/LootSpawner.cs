@@ -1,11 +1,7 @@
-﻿using Assets.Scripts.Data;
-using Assets.Scripts.Data.LootDataFolder;
-using Assets.Scripts.Data.PlayerProgressFolder;
+﻿using Assets.Scripts.Data.LootDataFolder;
 using Assets.Scripts.Infrastructure.Services.Factory;
-using Assets.Scripts.Infrastructure.Services.PersistentProgress;
 using Assets.Scripts.Infrastructure.Services.RandomService;
 using Assets.Scripts.Logic;
-using System.Xml;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemy.LootScripts
@@ -34,9 +30,9 @@ namespace Assets.Scripts.Enemy.LootScripts
             enemyDeath.OnEnemyDeath -= SpawnLoot;
         }
 
-        private void SpawnLoot()
+        private async void SpawnLoot()
         {
-            LootPiece loot = _factory.CreateLoot();
+            LootPiece loot = await _factory.CreateLoot();
             loot.transform.position = transform.position;
             string uniqueID = loot.GetComponent<UniqueID>().ID;
             Loot lootItem = GenerateLoot(uniqueID, loot.transform.position);

@@ -13,10 +13,6 @@ namespace Assets.Scripts.UI.Elements
         {
             _worldData = worldData;
             _worldData.LootData.ChangedLootData += UpdateCounter;
-        }
-
-        private void Start()
-        {
             UpdateCounter();
         }
 

@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.StaticData.EnemyStaticData;
-using System;
+﻿using System;
 using UnityEngine;
+using Assets.Scripts.StaticData.EnemyStaticData;
 
 namespace Assets.Scripts.StaticData.LevelStaticDataFolder
 {

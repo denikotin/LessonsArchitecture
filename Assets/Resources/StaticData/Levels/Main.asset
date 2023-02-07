@@ -27,6 +27,6 @@ MonoBehaviour:
     MonsterTypeID: 0
     position: {x: 5.6600003, y: 0, z: 9.210001}
   - id: Main_d6de6001-406a-4a05-84f9-458d2777d110
-    MonsterTypeID: 0
+    MonsterTypeID: 10
     position: {x: -3.13, y: 0, z: -0.64000034}
   InitialPlayerPosition: {x: -0.58, y: 0, z: -9.59}

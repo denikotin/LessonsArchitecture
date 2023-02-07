@@ -37,9 +37,9 @@ namespace Assets.Scripts.Enemy.EnemySpawnScripts
             }
         }
 
-        private void Spawn()
+        private async void Spawn()
         {
-            GameObject monster = _gameFactory.CreateMonster(monsterTypeID, transform);
+            GameObject monster = await _gameFactory.CreateMonster(monsterTypeID, transform);
             _enemyDeath = monster.GetComponent<EnemyDeath>();
             _enemyDeath.OnEnemyDeath += Slay;
         }

@@ -20,4 +20,8 @@ MonoBehaviour:
   moveSpeed: 4
   effectiveDistance: 0.5
   cleavage: 0.5
-  monsterPrefab: {fileID: 5516078658202664118, guid: 9fd5f8c8334ee58469fad2ac0be23d07, type: 3}
+  prefabReference:
+    m_AssetGUID: 9fd5f8c8334ee58469fad2ac0be23d07
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

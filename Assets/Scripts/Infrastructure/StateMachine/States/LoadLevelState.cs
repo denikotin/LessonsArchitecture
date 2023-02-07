@@ -1,16 +1,16 @@
-﻿using Assets.Scripts.Infrastructure.SceneLoaderFolder;
-using Assets.Scripts.Infrastructure.Services.Factory;
-using Assets.Scripts.Infrastructure.Services.PersistentProgress;
-using Assets.Scripts.Infrastructure.Services.StaticDataService;
-using Assets.Scripts.Infrastructure.StateMachine.StateInterfaces;
-using Assets.Scripts.Logic.CameraLogic;
+﻿using UnityEngine;
 using Assets.Scripts.Player;
-using Assets.Scripts.StaticData.LevelStaticDataFolder;
+using System.Threading.Tasks;
 using Assets.Scripts.UI.Elements;
-using Assets.Scripts.UI.Services.Factory;
-using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.Logic.CameraLogic;
+using Assets.Scripts.UI.Services.Factory;
+using Assets.Scripts.Infrastructure.Services.Factory;
+using Assets.Scripts.Infrastructure.SceneLoaderFolder;
+using Assets.Scripts.StaticData.LevelStaticDataFolder;
+using Assets.Scripts.Infrastructure.Services.StaticDataService;
+using Assets.Scripts.Infrastructure.Services.PersistentProgress;
+using Assets.Scripts.Infrastructure.StateMachine.StateInterfaces;
 
 namespace Assets.Scripts.Infrastructure.StateMachine.States
 {
@@ -46,57 +46,53 @@ namespace Assets.Scripts.Infrastructure.StateMachine.States
         {
             _loadingCurtain.Show();
             _gameFactory.CleanUp();
+            _gameFactory.WarmUp();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
-        public void Exit()
-        {
-            _loadingCurtain.Hide();
-        }
+        public void Exit() => _loadingCurtain.Hide();
 
-        private void OnLoaded()
+        private async void OnLoaded()
         {
-            InitUIRoot();
-            InitializeGameWorld();
+            await InitUIRoot();
+            await InitializeGameWorld();
             InformProgressReader();
             _gameStateMachine.Enter<GameLoopState>();
         }
 
-        private void InitializeGameWorld()
+        private async Task InitializeGameWorld()
         {
-            LevelStaticData levelData = LevelStaticData();
-            InitSpawners(levelData);
-            GameObject player = _gameFactory.CreatePlayer(levelData.InitialPlayerPosition);
-            InitHud(player);
+            LevelStaticData levelData = LoadLevelStaticData();
+            await InitSpawners(levelData);
+            GameObject player = await _gameFactory.CreatePlayer(levelData.InitialPlayerPosition);
+            await InitHud(player);
             CameraFollow(player);
         }
 
-        private LevelStaticData LevelStaticData()
+        private LevelStaticData LoadLevelStaticData()
         {
             string sceneKey = SceneManager.GetActiveScene().name;
             LevelStaticData levelData = _staticDataService.ForLevel(sceneKey);
             return levelData;
         }
 
-        private void InitSpawners(LevelStaticData levelData)
+        private async Task InitSpawners(LevelStaticData levelData)
         {
             foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
             {
-                _gameFactory.CreateSpawner(spawnerData.position, spawnerData.id, spawnerData.MonsterTypeID);
+               await _gameFactory.CreateSpawner(spawnerData.position, spawnerData.id, spawnerData.MonsterTypeID);
             }
         }
 
-        private void InitHud(GameObject player)
+        private async Task InitHud(GameObject player)
         {
-            GameObject hud = _gameFactory.CreateHud();
+            GameObject hud = await _gameFactory.CreateHud();
             hud.GetComponentInChildren<ActorUI>()
                     .Construct(player.GetComponent<PlayerHealth>());
         }
 
-        private void InitUIRoot()
-        {
-            _uiFactory.CreateUIRoot();
-        }
+        private async Task InitUIRoot() => 
+            await _uiFactory.CreateUIRoot();
 
         private void InformProgressReader()
         {
@@ -105,11 +101,7 @@ namespace Assets.Scripts.Infrastructure.StateMachine.States
                 progressReader.LoadProgress(_progressService.Progress);
             }
         }
-        private void CameraFollow(GameObject player)
-        {
+        private void CameraFollow(GameObject player) => 
             Camera.main.GetComponent<CameraFollow>().SetFollowing(player);
-        }
-
-
     }
 }

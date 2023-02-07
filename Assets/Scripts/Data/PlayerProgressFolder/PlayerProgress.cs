@@ -9,6 +9,7 @@ namespace Assets.Scripts.Data.PlayerProgressFolder
         public State HeroState;
         public Stats Stats;
         public KillData KillData;
+        public PurchaseData PurchaseData;
 
         public PlayerProgress(string initialLevel)
         {
@@ -16,6 +17,7 @@ namespace Assets.Scripts.Data.PlayerProgressFolder
             HeroState = new State();
             Stats = new Stats();
             KillData = new KillData();
+            PurchaseData = new PurchaseData();
         }
     }
 }

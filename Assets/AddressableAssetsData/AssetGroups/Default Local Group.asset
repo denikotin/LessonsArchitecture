@@ -16,7 +16,51 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: cd194652b0785874e936f62f5474c23f
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: fef8ee76ba818f84b81b11da6bda5ddf
+    m_Address: Golem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9fd5f8c8334ee58469fad2ac0be23d07
+    m_Address: Lich
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4304b6886a3cce04ebe883e395961eb0
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ccf7a900359a72549a5bcad985fc5d02
+    m_Address: SpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 181862a89f60d7a459002f9870860ad4
+    m_Address: hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 370a20f4a39fd414db7b6ea0a63b49c4
+    m_Address: Hud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ee810f3d91f8bf94ab4a2ad495f67c0d
+    m_Address: UIroot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6a7e873a04328a14c88e9ee524800edf
+    m_Address: ShopItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca636622d2943444aa45b41adf54d7b2
+    m_Address: Meat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2d8a04a9e9fc4044789869e6b4d41097
+    m_Address: GreenBottle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 70fa2b0951d12184ea6d135f517cce2a
+    m_Address: RedBottle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 73c059bb75b82b64eaa24a311237b26d, type: 2}
   m_SchemaSet:

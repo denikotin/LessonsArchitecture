@@ -15,7 +15,13 @@ MonoBehaviour:
   monsterID: 10
   health: 8
   damage: 20
-  effectiveDistance: 0.5
+  MaxLoot: 0
+  MinLoot: 0
   moveSpeed: 2
+  effectiveDistance: 0.5
   cleavage: 0.5
-  monsterPrefab: {fileID: 5261016488348296696, guid: fef8ee76ba818f84b81b11da6bda5ddf, type: 3}
+  prefabReference:
+    m_AssetGUID: fef8ee76ba818f84b81b11da6bda5ddf
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

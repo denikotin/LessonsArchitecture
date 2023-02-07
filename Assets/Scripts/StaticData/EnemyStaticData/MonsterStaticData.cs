@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Assets.Scripts.StaticData.EnemyStaticData
 {
@@ -25,6 +26,6 @@ namespace Assets.Scripts.StaticData.EnemyStaticData
         [Range(0.5f, 1f)]
         public float cleavage;
 
-        public GameObject monsterPrefab;
+        public AssetReferenceGameObject prefabReference;
     }
 }

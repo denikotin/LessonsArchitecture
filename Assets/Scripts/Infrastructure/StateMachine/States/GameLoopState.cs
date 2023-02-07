@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.Infrastructure.StateMachine.StateInterfaces;
-using System.Collections;
-using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure.StateMachine.States
 {

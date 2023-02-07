@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Data.LootDataFolder;
-using System;
+﻿using System;
 
 namespace Assets.Scripts.Infrastructure.Services.Ads
 {
